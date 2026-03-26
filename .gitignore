@@ -1,0 +1,40 @@
+# ──────────────────────────────────────────────
+# .NET / C#
+# ──────────────────────────────────────────────
+**/bin/
+**/obj/
+*.user
+*.suo
+.vs/
+*.log
+
+# ──────────────────────────────────────────────
+# SECRETS — Never commit these!
+# ──────────────────────────────────────────────
+# The real appsettings.json has DB credentials and API keys.
+# Use appsettings.json.example as a safe template instead.
+FinancialTwin.API/appsettings.json
+FinancialTwin.API/appsettings.Development.json
+.env
+*.env
+
+# ──────────────────────────────────────────────
+# Node / React
+# ──────────────────────────────────────────────
+**/node_modules/
+FinancialTwin.Web/dist/
+
+# ──────────────────────────────────────────────
+# Docker
+# ──────────────────────────────────────────────
+# Keep Dockerfiles and docker-compose.yml tracked.
+# Exclude any local override files.
+docker-compose.override.yml
+
+# ──────────────────────────────────────────────
+# OS & Editor
+# ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/settings.json

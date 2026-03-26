@@ -1,0 +1,6 @@
+@FinancialTwin.API_HostAddress = http://localhost:5270
+
+GET {{FinancialTwin.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

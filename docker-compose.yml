@@ -1,0 +1,49 @@
+services:
+
+  # =============================================
+  # Service 1: ASP.NET Core API
+  # =============================================
+  api:
+    build:
+      context: ./FinancialTwin.API      # where the Dockerfile is
+      dockerfile: Dockerfile
+    container_name: financialtwin_api
+    ports:
+      - "8080:8080"                     # host:container
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+      # Connection string pointing to Neon cloud PostgreSQL (no local DB needed)
+      - ConnectionStrings__DefaultConnection=Host=ep-flat-forest-aiwmrg5e-pooler.c-4.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_2mazHnBsvWy5;Ssl Mode=Require;
+      - GeminiAi__ApiKey=AIzaSyBXxyDwZNCHHrhdeOk3DTLc1ZX_AkhrPYk
+      - Jwt__Key=SuperSecretKeyThatIsAtLeast32BytesLong123!
+      - Jwt__Issuer=FinancialTwinAPI
+      - Jwt__Audience=FinancialTwinApp
+    networks:
+      - financialtwin_net
+    restart: unless-stopped
+
+  # =============================================
+  # Service 2: React Frontend (served via Nginx)
+  # =============================================
+  frontend:
+    build:
+      context: ./FinancialTwin.Web     # where the Dockerfile is
+      dockerfile: Dockerfile
+    container_name: financialtwin_frontend
+    ports:
+      - "3000:80"                      # access the app at http://localhost:3000
+    depends_on:
+      - api                            # start after api container is up
+    networks:
+      - financialtwin_net
+    restart: unless-stopped
+
+# =============================================
+# Shared Network
+# Both containers can communicate using service names:
+#   - frontend → api:8080
+# =============================================
+networks:
+  financialtwin_net:
+    driver: bridge

@@ -1,0 +1,20 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=YOUR_NEON_HOST;Database=YOUR_DB;Username=YOUR_USER;Password=YOUR_PASSWORD;Ssl Mode=Require;"
+  },
+  "GeminiAi": {
+    "ApiKey": "YOUR_GEMINI_API_KEY"
+  },
+  "Jwt": {
+    "Key": "YourSuperSecretKeyThatIsAtLeast32BytesLong!",
+    "Issuer": "FinancialTwinAPI",
+    "Audience": "FinancialTwinApp"
+  }
+}
