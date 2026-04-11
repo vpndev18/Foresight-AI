@@ -59,7 +59,3 @@ The easiest way to run the entire stack locally is using Docker:
 This project follows a feature-based folder structure (Vertical Slice Architecture) within the .NET API to maintain high cohesion and keep logic organized as the application scales.
 
 ---
-
-## 📝 License
-
-Distributed under the MIT License.
