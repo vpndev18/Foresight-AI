@@ -13,12 +13,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
-      # Connection string pointing to Neon cloud PostgreSQL (no local DB needed)
-      - ConnectionStrings__DefaultConnection=Host=ep-flat-forest-aiwmrg5e-pooler.c-4.us-east-1.aws.neon.tech;Database=neondb;Username=neondb_owner;Password=npg_2mazHnBsvWy5;Ssl Mode=Require;
-      - GeminiAi__ApiKey=AIzaSyBXxyDwZNCHHrhdeOk3DTLc1ZX_AkhrPYk
-      - Jwt__Key=SuperSecretKeyThatIsAtLeast32BytesLong123!
-      - Jwt__Issuer=FinancialTwinAPI
-      - Jwt__Audience=FinancialTwinApp
+      # Secrets are read from a local `.env` file (see `.env.example`).
+      # The `:?` syntax makes `docker compose up` fail fast if the variable is missing.
+      - ConnectionStrings__DefaultConnection=${DB_CONNECTION_STRING:?DB_CONNECTION_STRING not set}
+      - GeminiAi__ApiKey=${GEMINI_API_KEY:?GEMINI_API_KEY not set}
+      - Jwt__Key=${JWT_KEY:?JWT_KEY not set}
+      - Jwt__Issuer=${JWT_ISSUER:-FinancialTwinAPI}
+      - Jwt__Audience=${JWT_AUDIENCE:-FinancialTwinApp}
     networks:
       - financialtwin_net
     restart: unless-stopped

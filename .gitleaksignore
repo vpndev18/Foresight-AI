@@ -1,0 +1,12 @@
+# Allowlist for gitleaks — https://github.com/gitleaks/gitleaks
+#
+# These fingerprints point at secrets committed to the initial commit 8dee94d
+# (docker-compose.yml). They were acknowledged, rotated out-of-band, and
+# removed from the working tree. They remain in git history and will re-appear
+# on full-history scans (workflow_dispatch, nightly), so they are ignored here.
+#
+# DO NOT add new entries to silence real findings — rotate the secret and
+# remove it from the tree instead.
+
+8dee94d5a2a274c96e975a0a84bcaa834bd4bc69:docker-compose.yml:generic-api-key:17
+8dee94d5a2a274c96e975a0a84bcaa834bd4bc69:docker-compose.yml:gcp-api-key:18

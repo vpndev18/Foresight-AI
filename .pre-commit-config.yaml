@@ -1,0 +1,12 @@
+# Local pre-commit hook for secret scanning.
+# Run `pre-commit install` once per clone to wire it up. Docs: https://pre-commit.com/
+#
+# The same gitleaks version runs in CI (.github/workflows/ci.yml) so local and
+# CI results match. Allowlisted historical fingerprints live in .gitleaksignore.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+        name: gitleaks (secret scan)
